@@ -4,7 +4,10 @@
         <title>Sign Up</title>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
         <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+        <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+        <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
         <style>
             body {
                 font-family: "Open Sans", sans-serif;
@@ -32,48 +35,84 @@
                 font-style: italic;  
             }
         </style>
+        <script type="text/javascript">
+            $(document).ready(function () {
+                $("#dialog").dialog({
+                    modal: true,
+                    autoOpen: false,
+                    buttons: {
+                        Ok: function () {
+                            $(this).dialog("close");
+                        },
+                        Cancel: function () {
+                            $(this).dialog("close");
+                            $("#fileForm")[0].reset();
+                        }
+                    }
+                });
+            });
+            function  submitPopup() {
+                var username = $("#username").val();
+                var email = $("#email").val();
+                var password = $("#password").val();
+                var passwordConfirm = $("#password-confirm").val();
+
+                $("#fileForm input").each(function () {
+                    if ($.trim($(this).val()).length == 0) {
+                        $(this).focus();
+                    }
+                });
+                if (username != null && username != '' && email != null && email != '' && password != null && password != '' && passwordConfirm != null && passwordConfirm != '') {
+                    $("#dialog").dialog("open");
+                }
+
+            }
+
+        </script>
     </head>
     <body>
         <div class="center-div">
-        <div class="container">
-            <div class="row">
-                <div class="col-md-6 col-centered">
-                    <form action="" method="post" id="fileForm" role="form">
-                        <fieldset >
-                            <div style="border-bottom: 1px solid #aaa;text-align: center"><h3>SIGN UP</h3></div>
-                            <br/>
-                            <div class="form-group">
-                                <label for="username"> User name </label> 
-                                <input class="form-control" type="text" name="username" id="username" placeholder="mysuperusername" required />  
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-6 col-centered">
+                        <form action="" method="post" id="fileForm" role="form">
+                            <fieldset >
+                                <div style="border-bottom: 1px solid #aaa;text-align: center"><h3>SIGN UP</h3></div>
+                                <br/>
+                                <div class="form-group">
+                                    <label for="username"> User name </label> 
+                                    <input class="form-control" type="text" name="username" id="username" placeholder="mysuperusername" required />  
 
-                            </div>
+                                </div>
 
-                            <div class="form-group">
-                                <label for="email"> Email Address </label> 
-                                <input class="form-control" type="text" name="email" id="email"  placeholder="mysuperusername@mail.com" required/>   
+                                <div class="form-group">
+                                    <label for="email"> Email Address </label> 
+                                    <input class="form-control" type="text" name="email" id="email"  placeholder="mysuperusername@mail.com" required/>   
 
-                            </div>
+                                </div>
 
-                            <div class="form-group">
-                                <label for="password"> Password </label>
-                                <input class="form-control" type="text" name="password" id="password"  placeholder="eg. X8dfl90EO" required/>
+                                <div class="form-group">
+                                    <label for="password"> Password </label>
+                                    <input class="form-control" type="text" name="password" id="password"  placeholder="eg. X8dfl90EO" required/>
 
-                                <label for="password"> Password Confirm </label>
-                                <input class="form-control" type="text" name="password-confirm" id="password-confirm"  placeholder="eg. X8dfl90EO" required/>
-                            </div>
+                                    <label for="password"> Password Confirm </label>
+                                    <input class="form-control" type="text" name="password-confirm" id="password-confirm"  placeholder="eg. X8dfl90EO" required/>
+                                </div>
 
-                            <div class="form-group">
-                                <input class="btn btn-success" type="submit" name="submit_reg" value="SIGN UP">
-                            </div>
+                                <div class="form-group">
+                                    <input class="btn btn-success" type="button" name="submit_reg" value="SIGN UP" onclick="submitPopup()">
+                                </div>
 
-                        </fieldset>
-                    </form>
+                            </fieldset>
+                        </form>
+                        <div id="dialog" title="Registration" >
+                            <p>User Registration Successful</p>
+                        </div>
 
+                    </div>
 
                 </div>
-
             </div>
         </div>
-            </div>
     </body>
 </html>
