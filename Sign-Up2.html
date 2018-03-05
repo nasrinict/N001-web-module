@@ -3,9 +3,9 @@
     <head>
         <title>Sign Up</title>
         <meta charset="UTF-8">
-		
-		 <style>
-		 
+
+        <style>
+
             body {
                 font-family: "Open Sans", sans-serif;
                 font-size: 14px;
@@ -13,27 +13,27 @@
                 padding: 10px;
                 background-color: #d1f7ff;
             }
-		
-		.div-centered{
+
+            .div-centered{
                 margin: 0 auto;
                 width: 600px;
             }
-			
-			 fieldset 
+
+            fieldset 
             {
                 border: 1px solid #ddd;
                 padding: 10px;       
                 border-radius:6px;
                 background-color:#f5f5f5;
             }
-			
-			 .form-group {
+
+            .form-group {
                 margin-bottom: 15px;
             }
-			
-			.form-control {
+
+            .form-control {
                 padding: 6px 12px;
-				width: 90%;
+                width: 90%;
                 font-size: 14px;				
                 color: #555;
                 background-color: #fff;
@@ -42,56 +42,102 @@
                 box-shadow: inset 0 1px 1px rgba(0,0,0,.075);
                 transition: border-color ease-in-out .15s,box-shadow ease-in-out .15s;
             }
-			
-			::-moz-placeholder {
-                font-style: italic;  
-				}
 
-		</style>
-		
-			   </head>
-			   
-			   
+            ::-moz-placeholder {
+                font-style: italic;  
+            }
+
+            .btn-success {
+                padding: 6px 12px;
+                text-align: center;
+                color: #fff;
+                background-color: #5cb85c;
+                cursor: pointer;
+                border-radius: 4px;
+                border: 1px solid transparent;
+            }
+
+        </style>
+
+        <script>
+            function submitPopup() {
+                if (confirm("User Registration Successful")) {
+                    window.open("landingPage.html");
+                } else {
+                    document.getElementById("reg_form").reset();
+
+                }
+            }
+
+            function validateForm() {
+                var username = document.getElementById("username").value;
+                var email = document.getElementById("email").value;
+                var password = document.getElementById("password").value;
+                var passwordConfirm = document.getElementById("password-confirm").value;
+
+                if (username == "") {
+                    document.getElementById("username").focus();
+                } 
+                if (email == "") {
+                    document.getElementById("email").focus();
+                } 
+                if (password == "") {
+                    document.getElementById("password").focus();
+                } 
+                if (passwordConfirm == "") {
+                   document.getElementById("password-confirm").focus();
+                } 
+                
+                if (username != "" && username != null && email != "" && email != null && password != "" && password != null && passwordConfirm != "" && passwordConfirm != null) {
+                    submitPopup()
+                }
+
+            }
+        </script>
+
+    </head>
+
+
     <body>
-          <div class="div-centered">
-		   <form>
+        <div class="div-centered">
+            <form id="reg_form">
                 <fieldset>
                     <div style="border-bottom: 1px solid #aaa;text-align: center"><h3>SIGN UP</h3></div>
                     <br/>
                     <div class="form-group">
                         <label for="username"> User Name </label> 
-                        <input class="form-control type="text" name="username" placeholder="Enter User Name" required />  
+                        <input class="form-control" type="text" name="username" id="username" placeholder="Enter User Name" />  
 
                     </div>
 
                     <div class="form-group">
                         <label for="email"> Email Address </label> 
-                        <input class="form-control type="text" name="email" placeholder="Enter email address" required/>   
+                        <input class="form-control" type="text" name="email" id="email" placeholder="Enter email address"/>   
 
                     </div>
 
                     <div class="form-group">
                         <label for="password"> Password </label>
-                        <input class="form-control type="text" name="password" placeholder="Enter password" required/>
+                        <input class="form-control" type="text" name="password" id="password" placeholder="Enter password"/>
                     </div>
 
                     <div class="form-group">
                         <label for="password">Confirm Password </label>
-                        <input class="form-control type="text" name="password-confirm" placeholder="Enter confirm password" required/>
+                        <input class="form-control" type="text" name="password-confirm"  id="password-confirm"  placeholder="Enter confirm password"/>
                     </div>
 
                     <div class="form-group">
-                        <input type="button" name="submit_reg" value="SIGN UP">
+                        <input class="btn-success" type="button" name="submit_reg" id="submit_btn" value="SIGN UP" onclick="validateForm()">
                     </div>
-                   <div style="border-top: 1px solid #aaa;text-align: right">
-				    <label class="button-inline"> Already a member ?
-                    <input type="button" name="login" value="Go and Log in">
-					</label>
-		
-				   </div>
+                    <div style="border-top: 1px solid #aaa;text-align: right; padding:10px">
+                        <label> Already a member ?
+                            <input class="btn-success" type="button" name="login" value="Go and Log in">
+                        </label>
+
+                    </div>
                 </fieldset>
-           
-		   </form>
-		   </div>
+
+            </form>
+        </div>
     </body>
 </html>
